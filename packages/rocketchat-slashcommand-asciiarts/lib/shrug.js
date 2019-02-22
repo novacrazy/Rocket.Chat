@@ -9,7 +9,13 @@ import { slashCommands } from 'meteor/rocketchat:utils';
 function Shrug(command, params, item) {
 	if (command === 'shrug') {
 		const msg = item;
-		msg.msg = `${ params } ¯\\_(ツ)_/¯`;
+
+		if (RocketChat.settings.get('Markdown_Parser') === 'marked') {
+			msg.msg = `${ params } ¯\\\\_(ツ)_/¯`;
+		} else {
+			msg.msg = `${ params } ¯\\_(ツ)_/¯`;
+		}
+
 		Meteor.call('sendMessage', msg);
 	}
 }
