@@ -177,7 +177,9 @@ RocketChatFile.FileSystem = class {
 	}
 
 	createReadStream(fileName) {
-		return fs.createReadStream(path.join(this.absolutePath, fileName));
+		return fs.createReadStream(path.join(this.absolutePath, fileName), {
+			highWaterMark: 8 * 1024 * 1024 // 8MiB
+		});
 	}
 
 	stat(fileName) {
