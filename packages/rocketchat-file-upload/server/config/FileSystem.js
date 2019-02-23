@@ -3,6 +3,7 @@ import { UploadFS } from 'meteor/jalik:ufs';
 import { settings } from 'meteor/rocketchat:settings';
 import _ from 'underscore';
 import fs from 'fs';
+import etag from 'etag';
 import { FileUploadClass, FileUpload } from '../lib/FileUpload';
 
 const FileSystemUploads = new FileUploadClass({
@@ -17,10 +18,11 @@ const FileSystemUploads = new FileUploadClass({
 
 			if (stat && stat.isFile()) {
 				file = FileUpload.addExtensionTo(file);
-				res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${ encodeURIComponent(file.name) }`);
+				res.setHeader('Content-Disposition', `inline; filename*=UTF-8''${ encodeURIComponent(file.name) }`);
 				res.setHeader('Last-Modified', file.uploadedAt.toUTCString());
 				res.setHeader('Content-Type', file.type);
 				res.setHeader('Content-Length', file.size);
+				res.setHeader('ETag', etag(stat));
 
 				this.store.getReadStream(file._id, file).pipe(res);
 			}
