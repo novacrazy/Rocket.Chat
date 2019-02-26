@@ -140,7 +140,7 @@ export const FileUpload = Object.assign(_FileUpload, {
 		const image = FileUpload.getStore('Uploads')._store.getReadStream(file._id, file);
 
 		const transformer = sharp()
-			.resize({ width: 32, height: 32, fit: 'inside' })
+			.resize({ width: 64, height: 64, fit: 'inside' })
 			.jpeg()
 			.blur();
 		const result = transformer.toBuffer().then((out) => out.toString('base64'));
