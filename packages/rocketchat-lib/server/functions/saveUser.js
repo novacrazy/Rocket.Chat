@@ -167,7 +167,7 @@ export const saveUser = function(userId, userData) {
 		const updateUser = {
 			$set: {
 				name: userData.name,
-				roles: userData.roles || ['user'],
+				roles: userData.roles || ['new_user'],
 				settings: userData.settings || {},
 			},
 		};
