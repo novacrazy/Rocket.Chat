@@ -16,13 +16,15 @@ const createAutolinker = () => {
 			return null;
 		}
 
-		if (match.matchedText.indexOf(Meteor.absoluteUrl()) === 0) {
 			const tag = match.buildTag();
-			tag.setAttr('target', '');
-			return tag;
-		}
 
-		return true;
+		//if (match.matchedText.indexOf(Meteor.absoluteUrl()) === 0) {
+		//	tag.setAttr('target', '');
+		//} else {
+		tag.setAttr('target', '_blank');
+		//}
+
+			return tag;
 	};
 
 	return new Autolinker({
