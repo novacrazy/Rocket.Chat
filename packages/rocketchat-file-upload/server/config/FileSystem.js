@@ -4,6 +4,8 @@ import { settings } from 'meteor/rocketchat:settings';
 import _ from 'underscore';
 import fs from 'fs';
 import etag from 'etag';
+import fresh from 'fresh';
+
 import { FileUploadClass, FileUpload } from '../lib/FileUpload';
 
 const FileSystemUploads = new FileUploadClass({
@@ -17,14 +19,26 @@ const FileSystemUploads = new FileUploadClass({
 			const stat = Meteor.wrapAsync(fs.stat)(filePath);
 
 			if (stat && stat.isFile()) {
+
 				file = FileUpload.addExtensionTo(file);
-				res.setHeader('Content-Disposition', `inline; filename*=UTF-8''${ encodeURIComponent(file.name) }`);
+
 				res.setHeader('Last-Modified', file.uploadedAt.toUTCString());
-				res.setHeader('Content-Type', file.type);
-				res.setHeader('Content-Length', file.size);
 				res.setHeader('ETag', etag(stat));
 
-				this.store.getReadStream(file._id, file).pipe(res);
+				if(fresh(req.headers, {
+					'etag': res.get('ETag'),
+					'last-modified': res.get('Last-Modified')
+				})) {
+					res.statusCode = 304;
+					res.end(); // No content for 304
+
+				} else {
+					res.setHeader('Content-Disposition', `inline; filename*=UTF-8''${ encodeURIComponent(file.name) }`);
+					res.setHeader('Content-Type', file.type);
+					res.setHeader('Content-Length', file.size);
+
+					this.store.getReadStream(file._id, file).pipe(res);
+				}
 			}
 		} catch (e) {
 			res.writeHead(404);
