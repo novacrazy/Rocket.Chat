@@ -26,8 +26,8 @@ const FileSystemUploads = new FileUploadClass({
 				res.setHeader('ETag', etag(stat));
 
 				if(fresh(req.headers, {
-					'etag': res.get('ETag'),
-					'last-modified': res.get('Last-Modified')
+					'etag': res.getHeader('ETag'),
+					'last-modified': res.getHeader('Last-Modified')
 				})) {
 					res.statusCode = 304;
 					res.end(); // No content for 304
