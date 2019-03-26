@@ -77,7 +77,23 @@ const FileSystemAvatars = new FileUploadClass({
 			if (stat && stat.isFile()) {
 				file = FileUpload.addExtensionTo(file);
 
-				this.store.getReadStream(file._id, file).pipe(res);
+				res.setHeader('Last-Modified', file.uploadedAt.toUTCString());
+				res.setHeader('ETag', etag(stat));
+
+				if(fresh(req.headers, {
+					'etag': res.getHeader('ETag'),
+					'last-modified': res.getHeader('Last-Modified')
+				})) {
+					res.statusCode = 304;
+					res.end(); // No content for 304
+
+				} else {
+					res.setHeader('Content-Disposition', `inline; filename*=UTF-8''${ encodeURIComponent(file.name) }`);
+					res.setHeader('Content-Type', file.type);
+					res.setHeader('Content-Length', file.size);
+
+					this.store.getReadStream(file._id, file).pipe(res);
+				}
 			}
 		} catch (e) {
 			res.writeHead(404);
@@ -98,12 +114,24 @@ const FileSystemUserDataFiles = new FileUploadClass({
 
 			if (stat && stat.isFile()) {
 				file = FileUpload.addExtensionTo(file);
-				res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${ encodeURIComponent(file.name) }`);
-				res.setHeader('Last-Modified', file.uploadedAt.toUTCString());
-				res.setHeader('Content-Type', file.type);
-				res.setHeader('Content-Length', file.size);
 
-				this.store.getReadStream(file._id, file).pipe(res);
+				res.setHeader('Last-Modified', file.uploadedAt.toUTCString());
+				res.setHeader('ETag', etag(stat));
+
+				if(fresh(req.headers, {
+					'etag': res.getHeader('ETag'),
+					'last-modified': res.getHeader('Last-Modified')
+				})) {
+					res.statusCode = 304;
+					res.end(); // No content for 304
+
+				} else {
+					res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${ encodeURIComponent(file.name) }`);
+					res.setHeader('Content-Type', file.type);
+					res.setHeader('Content-Length', file.size);
+
+					this.store.getReadStream(file._id, file).pipe(res);
+				}
 			}
 		} catch (e) {
 			res.writeHead(404);
