@@ -52,7 +52,7 @@ Template.adminEmoji.helpers({
 
 Template.adminEmoji.onCreated(function() {
 	const instance = this;
-	this.limit = new ReactiveVar(50);
+	this.limit = new ReactiveVar(500);
 	this.filter = new ReactiveVar('');
 	this.ready = new ReactiveVar(false);
 
