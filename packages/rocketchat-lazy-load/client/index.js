@@ -38,7 +38,7 @@ const loadImage = (el, instance) => {
 const isVisible = (el, instance) => {
 	requestAnimationFrame(() => {
 		const rect = getEl(el, instance).getBoundingClientRect();
-		if (rect.top >= -100 && rect.left >= 0 && rect.top <= (window.innerHeight || document.documentElement.clientHeight)) {
+		if (rect.left >= 0 && rect.top <= (window.innerHeight || document.documentElement.clientHeight)) {
 			return loadImage(el, instance);
 		}
 	});
