@@ -30,7 +30,7 @@
 
             {{#if audio_url}}
                 <div class="attachment-audio">
-                    <audio controls>
+                    <audio controls preload="metadata">
                         <source src="{{audio_url}}" type="{{audio_type}}" data-description="{{description}}">
                         Your browser does not support the audio element.
                     </audio>
@@ -39,7 +39,7 @@
 
             {{#if video_url}}
                 <div class="attachment-video">
-                    <video controls class="inline-video">
+                    <video controls class="inline-video" preload="metadata">
                         <source src="{{video_url}}" type="{{video_type}}" data-description="{{description}}">
                         Your browser does not support the video element.
                     </video>
