@@ -4,11 +4,10 @@ import { getUserPreference } from 'meteor/rocketchat:utils';
 
 Template.oembedYoutubeWidget.helpers({
 	collapsed() {
-		if (this.collapsed) {
+		if (this.collapsed != null) {
 			return this.collapsed;
 		} else {
-			const user = Meteor.user();
-			return getUserPreference(user, 'collapseMediaByDefault') === true;
+			return getUserPreference(Meteor.userId(), 'collapseMediaByDefault') === true;
 		}
 	},
 });
