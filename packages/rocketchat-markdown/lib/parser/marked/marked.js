@@ -9,6 +9,12 @@ const renderer = new _marked.Renderer();
 
 let msg = null;
 
+renderer.link = function(href, title, text) {
+	let link = _marked.Renderer.prototype.link.call(this, href, title, text);
+
+	return `<a target="_blank" href="` + link.slice(`<a href="`.length);
+};
+
 renderer.code = function(code, lang, escaped) {
 	if (this.options.highlight) {
 		const out = this.options.highlight(code, lang);
