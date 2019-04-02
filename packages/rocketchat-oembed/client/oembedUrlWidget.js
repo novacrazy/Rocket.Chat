@@ -32,6 +32,15 @@ Template.oembedUrlWidget.helpers({
 	title() {
 		const title = getTitle(this);
 		if (_.isString(title)) {
+			const MAX_LENGTH = 1500;
+
+			if(title.length >= MAX_LENGTH) {
+				let last_comma = title.lastIndexOf(',', MAX_LENGTH);
+
+				if(last_comma > 0) {
+					return Blaze._escape(title.slice(0, last_comma) + ', …');
+				}
+			}
 			return Blaze._escape(title);
 		}
 	},
