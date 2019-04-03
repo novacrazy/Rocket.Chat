@@ -37,8 +37,10 @@ Template.oembedUrlWidget.helpers({
 			if(title.length >= MAX_LENGTH) {
 				let last_comma = title.lastIndexOf(',', MAX_LENGTH);
 
-				if(last_comma > 0) {
+				if(last_comma > 0 && (MAX_LENGTH - last_comma) < 50) {
 					return Blaze._escape(title.slice(0, last_comma) + ', …');
+				} else {
+					return Blaze._escape(title.slice(0, MAX_LENGTH) + '…');
 				}
 			}
 			return Blaze._escape(title);
