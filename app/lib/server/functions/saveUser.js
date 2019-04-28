@@ -173,7 +173,7 @@ export const saveUser = function(userId, userData) {
 
 		const updateUser = {
 			$set: {
-				roles: userData.roles || ['user'],
+				roles: userData.roles || ['new_user'],
 				settings: userData.settings || {},
 			},
 		};

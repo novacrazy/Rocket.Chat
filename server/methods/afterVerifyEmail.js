@@ -17,7 +17,7 @@ Meteor.methods({
 		const verifiedEmail = _.find(user.emails, (email) => email.verified);
 
 		if (verifiedEmail) {
-			Roles.addUserRoles(user._id, 'user');
+			Roles.addUserRoles(user._id, 'new_user');
 			Roles.removeUserRoles(user._id, 'anonymous');
 		}
 	},
