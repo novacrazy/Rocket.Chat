@@ -53,6 +53,8 @@ export class FileUploadBase {
 
 	start(callback) {
 		this.handler = new UploadFS.Uploader({
+			chunkSize: 256 * 1024, // 256k
+			maxChunkSize: 16 * 1000 * 1024, // 16MB
 			store: this.store,
 			data: this.file,
 			file: this.meta,
