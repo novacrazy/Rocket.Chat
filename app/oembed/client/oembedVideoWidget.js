@@ -28,7 +28,7 @@ Template.oembedVideoWidget.helpers({
 		return getTitle(this);
 	},
 	collapsed() {
-		if (this.collapsed) {
+		if (this.collapsed != null) {
 			return this.collapsed;
 		} else {
 			return getUserPreference(Meteor.userId(), 'collapseMediaByDefault') === true;

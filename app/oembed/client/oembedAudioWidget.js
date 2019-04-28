@@ -4,7 +4,7 @@ import { getUserPreference } from '../../utils';
 
 Template.oembedAudioWidget.helpers({
 	collapsed() {
-		if (this.collapsed) {
+		if (this.collapsed != null) {
 			return this.collapsed;
 		} else {
 			return getUserPreference(Meteor.userId(), 'collapseMediaByDefault') === true;
