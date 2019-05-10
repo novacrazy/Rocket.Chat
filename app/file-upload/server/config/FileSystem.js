@@ -3,7 +3,6 @@ import fs from 'fs';
 import { Meteor } from 'meteor/meteor';
 import { UploadFS } from 'meteor/jalik:ufs';
 import _ from 'underscore';
-import fs from 'fs';
 import etag from 'etag';
 import fresh from 'fresh';
 
