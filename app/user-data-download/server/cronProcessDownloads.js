@@ -474,6 +474,7 @@ function processDataDownloads() {
 	});
 }
 
+/*
 Meteor.startup(function() {
 	Meteor.defer(function() {
 		processDataDownloads();
@@ -485,3 +486,4 @@ Meteor.startup(function() {
 		});
 	});
 });
+*/
