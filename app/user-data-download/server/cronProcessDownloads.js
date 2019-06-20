@@ -474,16 +474,15 @@ function processDataDownloads() {
 	});
 }
 
-/*
-Meteor.startup(function() {
-	Meteor.defer(function() {
-		processDataDownloads();
 
-		SyncedCron.add({
-			name: 'Generate download files for user data',
-			schedule: (parser) => parser.cron(`*/${ processingFrequency } * * * *`),
-			job: processDataDownloads,
-		});
-	});
-});
-*/
+//Meteor.startup(function() {
+//	Meteor.defer(function() {
+//		processDataDownloads();
+//
+//		SyncedCron.add({
+//			name: 'Generate download files for user data',
+//			schedule: (parser) => parser.cron(`*/${ processingFrequency } * * * *`),
+//			job: processDataDownloads,
+//		});
+//	});
+//});
