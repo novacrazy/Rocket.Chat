@@ -85,7 +85,7 @@ export class MentionsParser {
 
 			const channel = channels && channels.find(({ name }) => name === mention);
 			const reference = channel ? channel._id : mention;
-			return `${ prefix }<a class="mention-link mention-link--room" data-channel="${ reference }">${ `#${ mention }` }</a>`;
+			return `${ prefix }<a class="mention-link mention-link--room" data-channel="${ reference }" data-channel-name="${ mention }">${ `#${ mention }` }</a>`;
 		})
 
 	getUserMentions(str) {
