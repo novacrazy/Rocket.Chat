@@ -43,6 +43,11 @@
 				</li>
 			{{/each}}
 		</ul>
+		{{#if hasMore}}
+			<div class="load-more">
+				{{> loading}}
+			</div>
+		{{/if}}
 		{{#if Template.subscriptionsReady}}
 			{{#unless hasFiles}}
 				<h2>{{_ "Room_uploaded_file_list_empty"}}</h2>
