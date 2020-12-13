@@ -1,7 +1,7 @@
 import { escapeHTML } from '../../../lib/escapeHTML';
 
 const userTemplateDefault = ({ prefix, className, mention, title, label, type = 'username' }) => `${ prefix }<a class="${ className }" data-${ type }="${ mention }"${ title ? ` title="${ title }"` : '' }>${ label }</a>`;
-const roomTemplateDefault = ({ prefix, reference, mention }) => `${ prefix }<a class="mention-link mention-link--room" data-channel="${ reference }">${ `#${ mention }` }</a>`;
+const roomTemplateDefault = ({ prefix, reference, mention }) => `${ prefix }<a class="mention-link mention-link--room" data-channel="${ reference }" data-channel-name="${ mention }">${ `#${ mention }` }</a>`;
 export class MentionsParser {
 	constructor({ pattern, useRealName, me, roomTemplate = roomTemplateDefault, userTemplate = userTemplateDefault }) {
 		this.pattern = pattern;

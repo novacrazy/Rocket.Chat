@@ -12,11 +12,6 @@
 
 	font-weight: 700;
 
-	&:hover {
-		opacity: 0.6;
-		color: var(--mention-link-text-color);
-	}
-
 	&--me {
 		color: var(--mention-link-me-text-color);
 		background-color: var(--mention-link-me-background);
