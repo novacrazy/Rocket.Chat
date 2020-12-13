@@ -15,7 +15,7 @@ Meteor.methods({
 		const user = Users.findOneById(userId);
 		if (user && user.emails && Array.isArray(user.emails)) {
 			const verifiedEmail = user.emails.find((email) => email.verified);
-			const rolesToChangeTo = { anonymous: ['user'] };
+			const rolesToChangeTo = { anonymous: ['new_user'] };
 			const rolesThatNeedChanges = user.roles.filter((role) => rolesToChangeTo[role]);
 
 			if (rolesThatNeedChanges.length && verifiedEmail) {

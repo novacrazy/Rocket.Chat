@@ -5,6 +5,7 @@ export class DiscussionRoomType extends RoomTypeConfig {
 		super({
 			identifier: 't',
 			order: 25,
+			header: 'discussion',
 			label: 'Discussion',
 		});
 	}

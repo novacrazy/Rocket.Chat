@@ -281,7 +281,7 @@ Accounts.insertUserDoc = _.wrap(Accounts.insertUserDoc, function(insertUserDoc, 
 		});
 
 		if (hasAdmin) {
-			roles.push('user');
+			roles.push('new_user');
 		} else {
 			roles.push('admin');
 			if (settings.get('Show_Setup_Wizard') === 'pending') {

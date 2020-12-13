@@ -31,9 +31,7 @@ export const createAutolinkerMessageRenderer = (config) =>
 						const token = `=!=${ Random.id() }=!=`;
 						const tag = match.buildTag();
 
-						if (~match.matchedText.indexOf(Meteor.absoluteUrl())) {
-							tag.setAttr('target', '');
-						}
+						tag.setAttr('target', '_blank');
 
 						message.tokens = message.tokens ?? [];
 						message.tokens.push({

@@ -358,6 +358,7 @@ export async function sendAllNotifications(message, room) {
 		mentionIdsWithoutGroups,
 	} = await sendMessageNotifications(message, room);
 
+	/*
 	// on public channels, if a mentioned user is not member of the channel yet, he will first join the channel and then be notified based on his preferences.
 	if (room.t === 'c') {
 		// get subscriptions from users already in room (to not send them a notification)
@@ -394,6 +395,7 @@ export async function sendAllNotifications(message, room) {
 			throw new Meteor.Error(error);
 		});
 	}
+	*/
 
 	return message;
 }
