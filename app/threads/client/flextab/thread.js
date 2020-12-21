@@ -252,7 +252,7 @@ Template.thread.onCreated(async function() {
 	this.Threads = new Mongo.Collection(null);
 
 	this.state = new ReactiveDict({
-		sendToChannel: !this.data.mainMessage.tcount,
+		sendToChannel: true,
 	});
 
 	this.loadMore = async () => {
