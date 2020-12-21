@@ -17,12 +17,14 @@
 				{{/with}}
 			</ul>
 		</div>
-		{{> messageBox messageBoxData}}
+
 		<footer class="thread-footer">
 			{{# with checkboxData }}
 				{{> Checkbox }}
 			{{/with}}
 			<label for="sendAlso" class="thread-footer__text">{{ _ "Also_send_to_channel" }}</label>
 		</footer>
+
+		{{> messageBox messageBoxData}}
 	</section>
 </template>
