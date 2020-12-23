@@ -23,6 +23,6 @@ export const useAvatarTemplate = () => {
 			}
 		})();
 
-		return (room) => <RoomAvatar size={size} rounded room={{ ...room, _id: room.rid || room._id, type: room.t }} />;
+		return (room) => <RoomAvatar size={size} room={{ ...room, _id: room.rid || room._id, type: room.t }} />;
 	}, [sidebarHideAvatar, sidebarViewMode]);
 };
