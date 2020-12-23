@@ -38,6 +38,11 @@ class Providers {
 
 const providers = new Providers();
 
+const MAX_HEIGHT = 400;
+const MAX_WIDTH = Math.floor(MAX_HEIGHT * 16/9);
+
+const DIMENSIONS = `&maxheight=${MAX_HEIGHT}&maxwidth=${MAX_WIDTH}`;
+
 providers.registerProvider({
 	urls: [new RegExp('https?://soundcloud\\.com/\\S+')],
 	endPoint: 'https://soundcloud.com/oembed?format=json&maxheight=150',
@@ -45,12 +50,12 @@ providers.registerProvider({
 
 providers.registerProvider({
 	urls: [new RegExp('https?://vimeo\\.com/[^/]+'), new RegExp('https?://vimeo\\.com/channels/[^/]+/[^/]+'), new RegExp('https://vimeo\\.com/groups/[^/]+/videos/[^/]+')],
-	endPoint: 'https://vimeo.com/api/oembed.json?maxheight=200',
+	endPoint: 'https://vimeo.com/api/oembed.json?' + DIMENSIONS,
 });
 
 providers.registerProvider({
 	urls: [new RegExp('https?://www\\.youtube\\.com/\\S+'), new RegExp('https?://youtu\\.be/\\S+')],
-	endPoint: 'https://www.youtube.com/oembed?maxheight=200',
+	endPoint: 'https://www.youtube.com/oembed?' + DIMENSIONS,
 });
 
 providers.registerProvider({
@@ -60,12 +65,12 @@ providers.registerProvider({
 
 providers.registerProvider({
 	urls: [new RegExp('https?://www\\.slideshare\\.net/[^/]+/[^/]+')],
-	endPoint: 'https://www.slideshare.net/api/oembed/2?format=json&maxheight=200',
+	endPoint: 'https://www.slideshare.net/api/oembed/2?format=json&' + DIMENSIONS,
 });
 
 providers.registerProvider({
 	urls: [new RegExp('https?://www\\.dailymotion\\.com/video/\\S+')],
-	endPoint: 'https://www.dailymotion.com/services/oembed?maxheight=200',
+	endPoint: 'https://www.dailymotion.com/services/oembed?' + DIMENSIONS,
 });
 
 providers.registerProvider({
