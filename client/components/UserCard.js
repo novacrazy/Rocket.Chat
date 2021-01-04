@@ -63,7 +63,6 @@ const UserCard = forwardRef(({
 	</>,
 	status = <Status.Offline/>,
 	actions,
-	localTime = <Skeleton width='100%'/>,
 	onClose,
 	nickname,
 	t = (e) => e,
@@ -81,7 +80,6 @@ const UserCard = forwardRef(({
 		</Box>
 		{ customStatus && <Info>{customStatus}</Info> }
 		<Roles>{roles}</Roles>
-		<Info>{localTime}</Info>
 		{ bio && <Info withTruncatedText={false} style={clampStyle} height='x60'><MarkdownText content={bio}/></Info> }
 		{open && <a onClick={open}>{t('See_full_profile')}</a>}
 	</Box>
