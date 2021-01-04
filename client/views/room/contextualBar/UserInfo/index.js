@@ -71,6 +71,11 @@ export const UserInfo = React.memo(function UserInfo({
 				<UserCard.Roles>{roles}</UserCard.Roles>
 			</>}
 
+			{Number.isInteger(utcOffset) && <>
+				<Label>{t('Local_Time')}</Label>
+				<Info><UTCClock utcOffset={utcOffset}/></Info>
+			</>}
+
 			{username && username !== name && <>
 				<Label>{t('Username')}</Label>
 				<Info>{username}</Info>
