@@ -7,6 +7,7 @@ import { useTranslation } from '../../../contexts/TranslationContext';
 import UserCard from '../../../components/UserCard';
 import { Backdrop } from '../../../components/Backdrop';
 import { ReactiveUserStatus } from '../../../components/UserStatus';
+import { LocalTime } from '../../../components/UTCClock';
 import { useUserInfoActions, useUserInfoActionsSpread } from '../hooks/useUserInfoActions';
 import { useRolesDescription } from '../../../contexts/AuthorizationContext';
 import { AsyncStatePhase } from '../../../hooks/useAsyncState';
@@ -54,6 +55,9 @@ const UserCardWithData = ({ username, onClose, target, open, rid }) => {
 			)),
 			bio,
 			etag: avatarETag,
+			localTime: Number.isInteger(utcOffset) && (
+				<LocalTime utcOffset={utcOffset} />
+			),
 			status: status && <ReactiveUserStatus uid={_id} presence={status} />,
 			customStatus: statusText,
 			nickname,
